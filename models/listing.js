@@ -10,14 +10,11 @@ const listingSchema = new Schema({
     },
     description: String,
     image: {
-        type: String,
-        default: "https://www.sharmispassions.com/wp-content/uploads/2013/01/MultigrainAtta9.jpg",
-        set: (v) => v.trim() === "" ? "https://www.sharmispassions.com/wp-content/uploads/2013/01/MultigrainAtta9.jpg" : v,
+        url: String,
+        filename: String,
     },
-    price: {
-        min: Number,
-        max: Number
-    },
+    price: { type: Number, required: true },
+    
     location: String,
     city: String,
     reviews: [
@@ -30,6 +27,10 @@ const listingSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
+     category: {
+        type:String,
+        enum: ["Chakki Atta", "Home Made Pickles","Seeds", "Lentils(Daal)", "Oil", "Amla Murabba", "Dry Fruits", "Home Made Masalas","Winter Special"]
+     }
 });
 
 //  Middleware: Convert price string to min-max before saving

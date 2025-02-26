@@ -125,5 +125,17 @@ body {
       padding-right: 0%;
     }
 
+    /* map
+    #map {
+      height: 400px;
+      width: 80vh;
+    } */
 
+    #map {
+      height: 400px;
+      width: 100%;
+      max-width: 800px; /* Adjust as needed */
+      margin: auto; /* Centering */
+    }
+    
     

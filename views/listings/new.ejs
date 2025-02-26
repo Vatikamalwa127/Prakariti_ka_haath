@@ -3,7 +3,7 @@
     <div class="col-8 offset-1">
         <br />
       <h6>Create a New Listing</h6>
-       <form method="POST" action="/listings" class=" needs-validation" novalidate>
+       <form method="POST" action="/listings" novalidate class=" needs-validation" enctype="multipart/form-data">
           <div class="md-3">
             <label for="title" class="form-label">Title</label>
             <input name="listing[title]" placeholder="enter title" type="text" class="form-control" required >
@@ -11,16 +11,26 @@
           </div>
           <div class="md-3" >
             <label for="description" class="form-label">"Description"</label>
-            <textarea name="listing[description]"  class="form-control" required></textarea>
+            <textarea name="listing[description]"  class="form-control" required>
+            </textarea>
             <div class="invalid-feedback">please enter a short description </div>
           </div>
-          <div class="md-3" >
-            <label for="image" class="form-label">Image</label>
-            <input name="listing[image]" placeholder="enter image URL/Link" type="text" class="form-control" ></div>
+
+          <!-- This is a image link -->
+          <!-- <div class="md-3" >
+            <label for="image" class="form-label">Image Link</label>
+            <input name="listing[image]" placeholder="enter image URL/Link" type="text" class="form-control" ></div> -->
+
+            <div class="md-3" >
+              <label for="image" class="form-label">Upload New Image</label>
+              <input name="listing[image]" type="file" class="form-control" ></div>
+
             <div class="row">
          <div class="md-3 col-md-4">
           <label for="price" class="form-label">Price</label>
-          <input name="listing[price]" placeholder="enter price" type="text" class="form-control" required>
+          <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required>
+          
+
           <div class="invalid-feedback">price should be valid</div>
         </div>
         <div class="md-3 col-md-8">

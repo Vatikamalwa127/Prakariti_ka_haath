@@ -5,8 +5,10 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const Listing = require("../models/listing.js");
 const Review = require("../models/review.js"); // Adjust the path based on your project structure
 const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
-
 const listingController = require("../controllers/listings.js");
+const multer  = require('multer')
+const { storage } = require("../cloudConfig.js");
+const upload = multer({ storage })
 const { render } = require("ejs");
 
 router
@@ -14,7 +16,8 @@ router
 .get(wrapAsync(listingController.index))
 .post(
     isLoggedIn,
-    validateListing,
+   
+    upload.single('listing[image]'),
     wrapAsync(listingController.createListing)
 );
   
@@ -26,6 +29,7 @@ router.get("/new", isLoggedIn, listingController.renderNewFrom);
   .put(
     isLoggedIn,
     isOwner,
+    upload.single('listing[image]'),
     validateListing,
     wrapAsync(listingController.updateListing)
 )
