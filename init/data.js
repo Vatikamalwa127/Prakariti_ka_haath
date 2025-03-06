@@ -1,5 +1,5 @@
 
-    
+console.log("Seeding data to MongoDB...");
   const sampleListings = [  
     {
       title: " MP Sharbati Premium Fresh Chakki Atta",
@@ -383,5 +383,6 @@
     city: "Bijnor",
     },
 ];
+console.log("Data seeding complete!");
 
 module.exports = { data: sampleListings };

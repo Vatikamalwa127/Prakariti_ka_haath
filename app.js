@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 if(process.env.NODE_ENV !== "production"){
     require("dotenv").config();
 }
@@ -33,6 +35,19 @@ main().then(() => {
 async function main() {
     await mongoose.connect(dbUrl);
 }
+
+console.log("ATLASDB_URL:", process.env.ATLASDB_URL);  // Debugging ke liye
+
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.ATLASDB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("MongoDB Connected Successfully!");
+}).catch(err => {
+    console.error("MongoDB Connection Error:", err);
+});
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
